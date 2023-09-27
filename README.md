@@ -1,4 +1,13 @@
-# Ambiente de desenvolvimento docker com nginx, php e mysql
+# CHANGE README
+
+version 0.8.0:
+Docker
+Nginx 1.19
+PHP 8.2.10-fpm
+MySql 5.7.35
+phpMyAdmin 5
+
+## Ambiente de desenvolvimento docker com nginx, php e mysql
 
 ## Objetivo
 Projeto publico para manutenção de um template de ambiente de desenvolvimento Docker para trabalhos com PHP e MySQL.

@@ -5,23 +5,23 @@ services:
     image: nginx:1.19
     restart: always
     volumes:
-      - ./config/nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./src:/var/www/
+      - ./docker/config/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./code:/var/www/
     networks:
-      - rede
+      - net
     ports:
-      - "${NGINX}:80"
+      - "8080:80"
     depends_on:
       - app
   app:
     build: 
       context: ./
-      dockerfile: ./builds/php-fpm.Dockerfile
+      dockerfile: ./docker/builds/php-fpm.Dockerfile
     restart: always
     networks: 
-      - rede
+      - net
     volumes: 
-      - ./src:/var/www/
+      - ./code:/var/www/
     depends_on: 
       - mysql
   mysql:
@@ -30,16 +30,16 @@ services:
       - db_data:/var/lib/mysql
     restart: always
     networks: 
-      - rede
+      - net
     environment:
       MYSQL_ROOT_PASSWORD: "root"
   phpmyadmin:
     image: phpmyadmin:5
     restart: always
     ports: 
-      - "${PHPMYADMIN}:8020"
+      - "8020:8020"
     networks: 
-      - rede
+      - net
     depends_on: 
       - mysql
     environment:
@@ -48,7 +48,7 @@ services:
       PMA_PASSWORD: "root"
 
 networks:
-  rede:
+  net:
 
 volumes:
   db_data:
