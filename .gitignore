@@ -1,5 +1,4 @@
 # Git Ignore
+# Ignoring files in code/public
 
-#/file-*.php
-#/file.php
-#file.php
+/code/public/*

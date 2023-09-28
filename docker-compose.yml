@@ -25,28 +25,20 @@ services:
     depends_on: 
       - mysql
   mysql:
-    image: mysql:5.7.35
+    image: mysql/mysql-server:5.7
+    restart: always
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: database
+      MYSQL_RANDOM_ROOT_PASSWORD: true
+    ports:
+      - "3306:3306"
     volumes: 
       - db_data:/var/lib/mysql
-    restart: always
     networks: 
       - net
-    environment:
-      MYSQL_ROOT_PASSWORD: "root"
-  phpmyadmin:
-    image: phpmyadmin:5
-    restart: always
-    ports: 
-      - "8020:8020"
-    networks: 
-      - net
-    depends_on: 
-      - mysql
-    environment:
-      PMA_HOST: "mysql"
-      PMA_USER: "root"
-      PMA_PASSWORD: "root"
-
+    
 networks:
   net:
 

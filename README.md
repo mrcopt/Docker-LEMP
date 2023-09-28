@@ -1,11 +1,10 @@
 # CHANGE README
 
-version 0.8.0:
+version 0.8.1:
 Docker
 Nginx 1.19
 PHP 8.2.10-fpm
-MySql 5.7.35
-phpMyAdmin 5
+MySql Server 5.7
 
 ## Ambiente de desenvolvimento docker com nginx, php e mysql
 
@@ -21,38 +20,11 @@ Projeto publico para manutenção de um template de ambiente de desenvolvimento 
 2. MySQL
 3. PHP
 4. Nginx
-5. PhpMyAdmin
 
-## Como usar?
-1. Clone ou dê um fork no repositorio.
-2. Jogue sua aplicação dentro da pasta /src (arquivo index.php deve estar dentro da pasta /src/public).
-3. Digite no terminal:
+
+
 ```
 docker-compose up -d
 ```
-4. Acesse [localhost](http://localhost/) para acessar a aplicação ou [127.0.0.1:8080](http://127.0.0.1:8080) para acessar o PhpMyAdmin
+4. Acesse [localhost:8080](http://localhost:8080/) para acessar a aplicação ou [127.0.0.1:8080](http://127.0.0.1:8080) para acessar o PhpMyAdmin
 
-## Notas
-1. Composer esta instalado do dentro do container app. Para uso digite:
-```
-docker-compose exec app composer <comando composer>
-```
-Exemplo:
-```
-docker-compose exec app composer install
-```
-2. Os geradoradores de projetos Laravel e Symfony se encontram instalados dentro do container app. Para criar um projeto Laravel base digite:<br>
-
-
-2.1. Para excluir o que há originalmente:
-```
-docker-compose exec app rm -R public
-```
-2.2. Para instalar o projeto Laravel base:
-```
-docker-compose exec app composer create-project laravel/laravel .
-```
-2.3. Para instalar o projeto Symfony base:
-```
-docker-compose exec app symfony new .
-```
