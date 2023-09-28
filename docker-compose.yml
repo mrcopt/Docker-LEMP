@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   nginx:
+    container_name: nginx
     image: nginx:1.19
     restart: always
     volumes:
@@ -14,33 +15,29 @@ services:
     depends_on:
       - app
   app:
+    container_name: app
     build: 
       context: ./
-      dockerfile: ./docker/builds/php-fpm.Dockerfile
+      dockerfile: ./docker/Dockerfile
     restart: always
     networks: 
       - net
     volumes: 
       - ./code:/var/www/
-    depends_on: 
-      - mysql
   mysql:
-    image: mysql/mysql-server:5.7
+    container_name: mysql
     restart: always
+    image: mysql:5.7
     environment:
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: database
-      MYSQL_RANDOM_ROOT_PASSWORD: true
-    ports:
-      - "3306:3306"
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
     volumes: 
-      - db_data:/var/lib/mysql
+      - ./docker/data/mysql:/var/lib/mysql
+    ports:
+      - "6033:3306"
     networks: 
       - net
     
 networks:
   net:
-
-volumes:
-  db_data:

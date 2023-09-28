@@ -1,6 +1,6 @@
 FROM php:8.2.10-fpm
 
-# Instalar dependencias do sistema
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -10,16 +10,15 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip
 
-# Limpar cache
+# Clean system cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Instalar extensões php fundamentais
+# Install PHP dependencies
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
-
 
 WORKDIR /var/www
 
-# Atualiza as permissões para funcionar bem com o Nginx
+# Set permissions to work with Nginx
 RUN chown -R 33:33 /var/www
 
 EXPOSE 9000
