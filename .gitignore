@@ -2,3 +2,5 @@
 # Ignoring files in code/public
 
 /code/public/*
+/docker/data
+/docker/data/*

@@ -1,6 +1,6 @@
-FROM php:8.2.10-fpm
+FROM php:8.1-fpm
 
-# Install system dependencies
+# Install OS system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP dependencies
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath intl gd
 
 WORKDIR /var/www
 
